@@ -18,7 +18,7 @@ Clone this repository to your local machine:
 
 1. **Clone the repository:**
    ```bash
-   git clone <[repository-url](https://github.com/HaniRawat/BackTracking)>
+   git clone [https://github.com/HaniRawat/BackTracking]
    ```
 
 2. **Navigate to the directory:**
