@@ -10,33 +10,29 @@ class Solution
     vector<vector<int>> store;
     unordered_set<string>mp;
     
-    void fun(vector<int>arr,vector<int>v, set<vector<int>>&s, int n, int i){
+    void solve(int index, int n, vector<int>temp,vector<int>arr,string s){
+        if(index == n){
+            if(mp.find(s) == mp.end()){
+                mp.insert(s);
+                store.push_back(temp);
+            }
+            return;
+        }
         
-           if(i==n){
-               sort(v.begin(),v.end());
-               s.insert(v);
-               return;
-           }
-           
-           v.push_back(arr[i]);
-           fun(arr,v,s,n,i+1);
-           v.pop_back();
-           fun(arr,v,s,n,i+1);
+        solve(index+1, n,temp,arr,s);
+        temp.push_back(arr[index]);
+        s += to_string(arr[index]);
+        solve(index+1,n,temp,arr,s);
     }
     //Function to find all possible unique subsets.
     vector<vector<int> > AllSubsets(vector<int> arr, int n)
     {
-        set<vector<int>>s;
-        
-        vector<int>v;
-        
-        fun(arr,v,s,n,0);
-        vector<vector<int>>ans;
-        for(auto it:s){
-            ans.push_back(it);
-        }
-        
-        return ans;
+        sort(arr.begin(),arr.end());
+        string s = "";
+        vector<int>temp;
+        solve(0,n,temp,arr,s);
+        sort(store.begin(),store.end());
+        return store;
     }
 };
 
